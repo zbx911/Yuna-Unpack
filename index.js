@@ -39,18 +39,18 @@ const jpg = [
 // —————— Header ———————————————————————————————————————————————————————————————
 
 // —— Cleaning the console 💨
-console.clear()
+console.clear();
 
 // —— Just an ascii header because I like it.
 console.log(
     chalk.bold(
         gradients("#8EA6DB", "#7354F6")([
-            `   ____     _       ____                `,
-            `  / __/__  (_)___  / __/__ _  _____ ___ `,
-            ` / _// _ \\/ / __/ _\\ \\/ -_) |/ / -_) _ \\`,
-            `/___/ .__/_/\\__/ /___/\\__/|___/\\__/_//_/`,
-            `   /_/           › Assets extractor`,
-            `\n`
+            "   ____     _       ____                ",
+            "  / __/__  (_)___  / __/__ _  _____ ___ ",
+            " / _// _ \\/ / __/ _\\ \\/ -_) |/ / -_) _ \\",
+            "/___/ .__/_/\\__/ /___/\\__/|___/\\__/_//_/",
+            "   /_/           › Assets extractor",
+            "\n"
         ].join("\n"))
     )
     + "————— Importing and decrypting data.pack ...\n\n"
@@ -64,7 +64,7 @@ let start;
 const timerStart = () => start = +new Date(),
       timerEnd   = () => +new Date() - start;
 
-timerStart()
+timerStart();
 
 // —— Importing the "data.pack" file
 fs.readFile("./data.pack", async (err, dataPack) => {
@@ -72,8 +72,8 @@ fs.readFile("./data.pack", async (err, dataPack) => {
     if (err) {
         err.code === "ENOENT"
             ? console.error(chalk.red("✗ ——— No 'data.pack' file found."))
-            : console.error(chalk.red(`✗ ——— ${err}`))
-        process.exit(1)
+            : console.error(chalk.red(`✗ ——— ${err}`));
+        process.exit(1);
     } else
         console.log(chalk.green(`\n✓ ——— Data.pack imported ( ${chalk.italic(timerEnd())}ms ) \n`));
 
@@ -88,12 +88,12 @@ fs.readFile("./data.pack", async (err, dataPack) => {
 
         KeyIndex === master.length -1
             ? KeyIndex = 0
-            : KeyIndex++
+            : KeyIndex++;
 
     }
 
-    /* —— dataPack.slice(0, 5) : <Buffer 50 4c 50 63 4b 01 26 00 00 00>
-       = "PLPcK" */
+    /* —— dataPack.slice(0, 5) : <Buffer 50 4c 50 63 4b 01 26 00 00 00>
+        = "PLPcK" */
 
     if (dataPack.slice(0, 6).equals(
         Buffer.from([80, 76, 80, 99, 75, 1])
@@ -117,7 +117,7 @@ fs.readFile("./data.pack", async (err, dataPack) => {
     if (process.argv.includes("-e"))
         fs.outputFile('extract', dataPack)
             .then(console.log("extracted file"))
-            .catch(err => { throw new Error(err) });
+            .catch(err => { throw new Error(err); });
 
     let accumulator = [];
 
@@ -134,7 +134,7 @@ fs.readFile("./data.pack", async (err, dataPack) => {
                 path.shift();
 
             if (path[0].length > 15 && !accumulator.includes(path[0]))
-                path[0] = accumulator.find(element => path[0].includes(element));
+                path[0] = accumulator.find((element) => path[0].includes(element));
 
             if (!accumulator.includes(path[0]) )
                 accumulator.push(path[0]);
@@ -152,14 +152,14 @@ fs.readFile("./data.pack", async (err, dataPack) => {
                 path.shift();
 
             if (!accumulator.includes(path[0]))
-                path[0] = accumulator.find(element => path[0].includes(element)) || path[0]
+                path[0] = accumulator.find((element) => path[0].includes(element)) || path[0]
 
         }
 
         if(path.length === 1)
-            path.unshift("output")
+            path.unshift("output");
 
-        return path.join("/")
+        return path.join("/");
 
     }
 
@@ -177,22 +177,22 @@ fs.readFile("./data.pack", async (err, dataPack) => {
             const fileName = cleanPath(dataPack.slice( i - 180, i ), fileFormat),
                   content = dataPack.slice( i, dataPack.indexOf(fileFormat[1], i + 1) );
 
-            total++
+            total++;;
 
             try {
 
                 if (!await fs.pathExists(`Output/${fileName}`)) {
                     fs.outputFileSync(
-                        `Output/${fileName}`, content, err => {
-                        if (err) console.log(err)
+                        `Output/${fileName}`, (content, err) => {
+                        if (err) console.log(err);
                     });
 
-                    news.push(fileName)
+                    news.push(fileName);
 
                 }
 
             } catch (err) {
-                console.error(err)
+                console.error(err);
             }
 
         }
@@ -203,7 +203,7 @@ fs.readFile("./data.pack", async (err, dataPack) => {
                     ? `including ${news.length} new ones`
                     : "but no new data"
             } ( ${chalk.italic(timerEnd())}ms )\n`
-        ))
+        ));
 
         if (news.length) {
 
