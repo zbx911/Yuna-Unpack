@@ -115,7 +115,7 @@ fs.readFile("./data.pack", async (err, dataPack) => {
     // —— Generate a file with the decrypted data.pack if requested
 
     if (process.argv.includes("-e"))
-        fs.outputFile('extract', dataPack)
+        fs.outputFile("extract", dataPack)
             .then(console.log("extracted file"))
             .catch(err => { throw new Error(err); });
 
