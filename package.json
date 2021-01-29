@@ -9,25 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ByteBuffer": "^0.3.0",
-    "atob": "^2.1.2",
-    "bitwise-xor": "0.0.0",
-    "buffer-replace": "^1.0.0",
-    "buffer-xor": "^2.0.2",
-    "bytebuffer": "^5.0.1",
-    "cfonts": "^2.8.2",
     "chalk": "^4.0.0",
-    "cli-progress": "^3.8.2",
-    "crypto-xor": "^1.1.0",
-    "event-stream": "^4.0.1",
     "fs-extra": "^9.0.0",
-    "fs-path": "0.0.24",
-    "gradient-string": "^1.2.0",
-    "mkdirp": "^1.0.4",
-    "moment": "^2.25.0",
-    "ora": "^4.0.4",
-    "terminal-image": "^1.0.1",
-    "xor-crypt": "^1.1.1",
-    "xorcrypto": "^1.1.2"
+    "gradient-string": "^1.2.0"
   }
 }
